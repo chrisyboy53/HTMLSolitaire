@@ -1,4 +1,4 @@
-# An HTML 5 Attempt of writing solitaire
+# A HTML 5 attempt of writing solitaire
 
 This is a HTML 5 Application of Solitaire. This is mainly for personal development and
 learning.
