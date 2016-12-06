@@ -29,21 +29,36 @@
                 item: undefined,
                 current: undefined,
                 moveNext: function() {
+                    /* 
+                     * When we have nothing in the linked list
+                     * then finish the enumeration
+                     */
                     if (!this.current && !this.head) {
                         return false;
                     }
 
+                    /*
+                     * This is the first time the enumerator
+                     * starts so set the current to head
+                     * and return true.
+                     */
                     if (!this.current) {
                         this.current = this.head;
                         this.item = this.current.item;
                         return true;
                     }
 
+                    /*
+                     * Iterate through until there is
+                     * no next item.
+                     */
                     if (this.current.next) {
                         this.current = this.current.next;
                         this.item = this.current.item;
                         return true;
                     }
+
+                    /* No more items return false */
                     return false;
                 }
             };
