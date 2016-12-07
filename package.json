@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">6.9.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisyboy53/HTMLSolitaire.git"
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/chrisyboy53/HTMLSolitaire#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-jasmine": "^1.0.3",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^19.0.0"
   }

@@ -1,1 +1,1 @@
-var Utilities = {};
+var Utilities = Utilities || {};

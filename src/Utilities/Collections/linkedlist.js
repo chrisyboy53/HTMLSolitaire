@@ -1,3 +1,6 @@
+var Utilities = Utilities || {};
+Utilities.Collections = Utilities.Collections || {};
+
 (function(collections) {
 
     collections.LinkedList = function() {
@@ -13,7 +16,7 @@
             this.next = undefined;
         }
 
-        this.Head = undefined; 
+        this.head = undefined; 
         this.tail = undefined;
 
         this.push = function(item) {

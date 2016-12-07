@@ -2,9 +2,19 @@ module.exports = function(grunt) {
     
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     grunt.initConfig({
         
+        jasmine: {
+            full: {
+                src: ['src/**/*.js'],
+                options: {
+                    specs: 'tests/**/*Spec.js'
+                }
+            }
+        },
+
         eslint: {
             options: {
                 config: ".eslintrc"
@@ -19,7 +29,8 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('build', 'eslint');
+    grunt.registerTask('test', 'jasmine');
+    grunt.registerTask('build', ['eslint','jasmine']);
     grunt.registerTask('default', 'watch');
 
 }

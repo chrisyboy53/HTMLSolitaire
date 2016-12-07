@@ -4,6 +4,8 @@
  * Game.Card namespace is setup here
 */
 
+var Game = Game ||  {};
+
 (function (game) {
 
     var Card = {};

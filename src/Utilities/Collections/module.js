@@ -1,6 +1,2 @@
-if (Utilities) {
-    Utilities.Collections = {};
-}
-else {
-    console.debug('Error obtaining Utilities module');
-}
+var Utilities = Utilities || {};
+Utilities.Collections = Utilities.Collections || {};
