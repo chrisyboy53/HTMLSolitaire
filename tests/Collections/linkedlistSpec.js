@@ -18,7 +18,7 @@ describe('Test Linked List', function() {
 
     describe('Add one item to list', function() {
 
-        beforeEach(function(){
+        beforeEach(function() {
             if (linkedList) {
                 linkedList.push(1);
             }
@@ -28,6 +28,26 @@ describe('Test Linked List', function() {
             expect(linkedList.head).toBeDefined();
             expect(linkedList.head.item).toBeDefined();
             expect(linkedList.head.item).toEqual(1);
+        });
+
+        describe('Add a second item', function() {
+            beforeEach(function() {
+                if (linkedList) {
+                    linkedList.push(3);
+                }
+            });
+
+            it('Should have a tail', function(){
+                expect(linkedList.tail).toBeDefined();
+                expect(linkedList.tail.item).toBeDefined()
+                expect(linkedList.tail.item).toEqual(3);
+            });
+
+            it('Should have a head', function(){
+                expect(linkedList.head).toBeDefined();
+                expect(linkedList.head.item).toBeDefined()
+                expect(linkedList.head.item).toEqual(1);
+            });
         });
 
     });

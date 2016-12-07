@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
         watch: {
             files: ['<%= eslint.target %>'],
-            tasks: ['eslint']
+            tasks: ['eslint', 'jasmine']
         }
 
     });
