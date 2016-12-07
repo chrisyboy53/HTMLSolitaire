@@ -4,7 +4,7 @@ describe('Test Linked List', function() {
 
     var linkedList;
     
-    it('Should be in the Collections.LinkedList namespace', function() {
+    it('Should be in the Utilities.Collections.LinkedList namespace', function() {
         expect(Utilities).toBeDefined();
         expect(Utilities.Collections).toBeDefined();
         expect(Utilities.Collections.LinkedList).toBeDefined();
@@ -30,7 +30,7 @@ describe('Test Linked List', function() {
             expect(linkedList.head.item).toEqual(1);
         });
 
-        describe('Add a second item', function() {
+        describe('When adding a second item', function() {
             beforeEach(function() {
                 if (linkedList) {
                     linkedList.push(3);
