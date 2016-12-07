@@ -9,7 +9,7 @@
 // Setup game module
 var Game = {};
 
-(function(game, collections) {
+(function(game) {
     
     game.start = function() {
         console.log('Game invoked');
@@ -22,4 +22,4 @@ var Game = {};
 
     };
 
-})(Game ||  {}, Utilities.Collections);
+})(Game ||  {});
