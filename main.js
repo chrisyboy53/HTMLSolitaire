@@ -6,5 +6,5 @@ if (Game) {
 
 }
 else {
-    throw "Game module not loaded";
+    throw 'Game module not loaded';
 }
