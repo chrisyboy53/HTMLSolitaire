@@ -1,0 +1,38 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "globals": {
+        "Utilities": true
+    },
+    "rules": {
+        "quotes": ["error", "single"], // only allow single quotes
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": false,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false
+            }
+        }],
+        "valid-jsdoc": ["error", { "requireReturn": false }],
+        "no-debugger": ["error"],
+        "no-extra-semi": ["error"],
+        "no-unused-vars": ["warn", { "vars": "local", "varsIgnorePattern": "Utilities" }],
+        "no-irregular-whitespace": ["error"],
+        // Ensure we have curly brackets being used
+        "curly": ["error"],
+        // Ensure we dont't place random numbers in code and have them declared in variables
+        "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
+        // We have good comma spacing
+        "comma-spacing": ["error"],
+        // Always want to make type safe
+        "eqeqeq": ["error"],
+        "camelcase": ["error"],
+        "semi": 2
+    }
+}

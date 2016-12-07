@@ -2,13 +2,18 @@
 
     collections.LinkedList = function() {
 
+        /**
+         * Internal class for creating a container round the item
+         * @param {object} item The Item required to be wrapped
+         * @param {_linkedListContainer} linkedTo The item connecting to
+         */
         function _linkedListContainer(item, linkedTo) {
             this.item = item;
             this.previous = linkedTo;
             this.next = undefined;
         }
 
-        this.head = undefined;
+        this.Head = undefined; 
         this.tail = undefined;
 
         this.push = function(item) {
@@ -62,8 +67,8 @@
                     return false;
                 }
             };
-        }
+        };
 
     };
 
-})(Utilities.Collections)
+})(Utilities.Collections);
