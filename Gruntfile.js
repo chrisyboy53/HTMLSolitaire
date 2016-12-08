@@ -3,10 +3,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-istanbul');
-
+    
     grunt.initConfig({
-        
+        env: {
+            coverage: {
+                APP_DIR_FOR_CODE_COVERAGE: 'test/coverage/instrument/src'
+            }
+        },
         jasmine: {
             full: {
                 src: ['src/**/*.js'],
@@ -21,12 +24,15 @@ module.exports = function(grunt) {
                     template: require('grunt-template-jasmine-istanbul'),
                     templateOptions: {
                         coverage: 'test/coverage/coverage.json',
-                        report: 'test/coverage/reports',
+                        report: {
+                            type: 'lcov',
+                            options: { dir: 'test/coverage/reports'}
+                        },
                         thresholds: {
-                            lines: 100,
-                            statements: 75,
-                            branches: 75,
-                            functions: 90
+                            lines: 60,
+                            statements: 60,
+                            branches: 40,
+                            functions: 50
                         }
                     }
                 }
@@ -69,9 +75,9 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('cover', ['instrument', 'jasmine:cover', 'storeCoverage', 'makeReport'])
+    grunt.registerTask('cover', ['jasmine:cover'])
     grunt.registerTask('test', 'jasmine:full');
-    grunt.registerTask('build', ['eslint','jasmine:full']);
+    grunt.registerTask('build', ['eslint']);
     grunt.registerTask('default', 'watch');
 
 }
