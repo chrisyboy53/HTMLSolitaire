@@ -1,6 +1,7 @@
 # A HTML 5 attempt of writing solitaire
 
-> [![Build Status](https://travis-ci.org/chrisyboy53/HTMLSolitaire.svg?branch=master)](https://travis-ci.org/chrisyboy53/HTMLSolitaire)
+[![Build Status](https://travis-ci.org/chrisyboy53/HTMLSolitaire.svg?branch=master)](https://travis-ci.org/chrisyboy53/HTMLSolitaire)
+[![Coverage Status](https://coveralls.io/repos/github/chrisyboy53/HTMLSolitaire/badge.svg?branch=master)](https://coveralls.io/github/chrisyboy53/HTMLSolitaire?branch=master)
 
 This is a HTML 5 Application of Solitaire. This is mainly for personal development and
 learning.
