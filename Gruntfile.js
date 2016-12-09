@@ -89,7 +89,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('cover', ['jasmine:cover']);
-    grunt.registerTask('coverall', ['jasmine:coveralls', 'coveralls']);
+    grunt.registerTask('coverallsTask', ['jasmine:coveralls', 'coveralls']);
     grunt.registerTask('test', 'jasmine:full');
     grunt.registerTask('build', ['eslint']);
     grunt.registerTask('default', 'watch');
