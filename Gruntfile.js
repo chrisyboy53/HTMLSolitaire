@@ -42,6 +42,23 @@ module.exports = function(grunt) {
                     template: require('grunt-template-jasmine-istanbul'),
                     templateOptions: {
                         coverage: 'test/coverage/coverage.json',
+                        report: 'test/coverage/reports',
+                        thresholds: {
+                            lines: 60,
+                            statements: 60,
+                            branches: 40,
+                            functions: 50
+                        }
+                    }
+                }
+            },
+            coveralls: {
+                src: ['src/**/*.js'],
+                options: {
+                    specs: 'tests/**/*Spec.js',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'test/coverage/coverage.json',
                         report: {
                             type: 'lcov',
                             options: { dir: 'test/coverage/reports'}
@@ -54,28 +71,6 @@ module.exports = function(grunt) {
                         }
                     }
                 }
-            }
-        },
-
-        instrument: {
-            files: 'src/**/*.js',
-            options: {
-                lazy: true,
-                basePath: 'test/coverage/instrument/'
-            }
-        },
-
-        storeCoverage: {
-            options: {
-                dir: 'test/coverage/reports'
-            }
-        },
-        makeReport: {
-            src: 'test/coverage/reports/**/*.json',
-            options: {
-                type: 'lcov',
-                dir: 'test/coverage/reports',
-                print: 'detail'
             }
         },
 
@@ -93,7 +88,8 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('cover', ['jasmine:cover', 'coveralls'])
+    grunt.registerTask('cover', ['jasmine:cover']);
+    grunt.registerTask('coverall', ['jasmine:coveralls', 'coveralls']);
     grunt.registerTask('test', 'jasmine:full');
     grunt.registerTask('build', ['eslint']);
     grunt.registerTask('default', 'watch');

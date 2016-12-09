@@ -48,6 +48,25 @@ describe('Linked List', function() {
                 expect(linkedList.head.item).toBeDefined()
                 expect(linkedList.head.item).toEqual(1);
             });
+
+            describe('when enumerating through the list', function() {
+                var results = [];
+
+                beforeEach(function(){
+                    var listEnum = linkedList.getEnumerator();
+
+                    while(listEnum.moveNext()) {
+                        results.push(listEnum.current.item);
+                    }
+
+                });
+
+                it('Should have 2 items returned', function() {
+                    expect(results.length).toBe(2);
+                });
+
+            });
+
         });
 
     });
