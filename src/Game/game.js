@@ -7,7 +7,7 @@
  */
 
 // Setup game module
-var Game = {};
+var Game = Game || {};
 
 (function(game) {
     
