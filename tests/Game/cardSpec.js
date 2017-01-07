@@ -4,9 +4,8 @@ describe('card', function() {
     describe('when I create a new card', function() {
         beforeEach(function() {
             if (Game &&
-                Game.Card &&
-                Game.Card.Card) {
-                    card = new Game.Card.Card(1, Game.CardSuits.Hearts);
+                Game.Card) {
+                    card = new Game.Card(1, Game.CardSuits.Hearts);
                 }
         });
 

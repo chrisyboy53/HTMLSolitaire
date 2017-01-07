@@ -8,14 +8,14 @@ var Game = Game ||  {};
 
 (function (game) {
 
-    var Card = {};
+    var Card = undefined;
 
     /**
      * Setups a new card
      * @param {number} cardNo number to make
      * @param {Game.CardSuits} cardSuit card suit
      */
-    Card.Card = function (cardNo, cardSuit) {
+    Card = function (cardNo, cardSuit) {
         this.cardNo = cardNo;
         this.cardSuit = cardSuit;
     };

@@ -9,7 +9,7 @@ describe('deck', function() {
                 }
         });
 
-        it('should not throw an exception when we have Card namespace', function(){
+        it('should not throw an exception when we have Card namespace', function() {
             expect(Game.Deck.init).not.toThrow('Deck requires Card namespace');
         });
 
