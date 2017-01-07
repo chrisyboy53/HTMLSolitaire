@@ -37,7 +37,7 @@ var Game = Game ||  {};
      * @param {Array<Cards>} cards Pack of cards to shuffle
      * @returns {Array<Card>} Returns shuffled cards
      */
-    function _suffleCards(cards) {
+    function _shuffleCards(cards) {
         var newCollection = [],
             zero = 0,
             numberOfItemsToCut = 1;
@@ -52,7 +52,7 @@ var Game = Game ||  {};
 
     cardManager.getCardPack = _getCardPack;
 
-    cardManager.suffleCards = _suffleCards;
+    cardManager.shuffleCards = _shuffleCards;
 
     Game.CardManager = cardManager;
 
