@@ -41,9 +41,17 @@ var Game = Game ||  {};
         var newCollection = [],
             zero = 0,
             numberOfItemsToCut = 1;
+
+        var cloneCards = new Array();
+
+        for (var i = 0, len = cards.length; i < len; i++) {
+            cloneCards.push(cards[i]);
+        }
+
         for (var i = cards.length; i >= zero; i--) {
             var randIndex = Math.floor(Math.random() * i);
-            var cardToAdd = cards.splice(randIndex, numberOfItemsToCut);
+            var cardToAdd = cloneCards.splice(randIndex, numberOfItemsToCut);
+            
             newCollection.push(cardToAdd[0]);
             
         }

@@ -34,8 +34,20 @@ describe('cardManager', function() {
             it('should be in a random order', function() {
                 // TODO: need to look into how volatile the change
                 // is in the pack.
-                expect('Should be random code sorted').toBe(false);
-                    
+                var numOfSameIndex = 0,
+                    volatilityMargin = 5;
+                
+                for (var i = 0, len = packOfCards.length; i < len; i++) {
+                    var card = packOfCards[i];
+
+                    var cardIndex = shuffledPack.indexOf(card);
+
+                    if (cardIndex === i) {
+                        numOfSameIndex++;
+                    }
+
+                }
+                expect(numOfSameIndex).not.toBeGreaterThan(volatilityMargin);
             });
 
         });
