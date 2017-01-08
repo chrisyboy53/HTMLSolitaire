@@ -19,7 +19,7 @@ describe('deck', function() {
             });
 
             it('should throw and exception when we try to initialise', function() {
-                expect(Game.Deck.init).toThrow('Deck requires Card namespace');
+                expect(Game.Deck.init).toThrow('Deck requires Card');
             });
         })
 

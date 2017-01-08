@@ -14,10 +14,17 @@ var Game = Game ||  {};
      * Setups a new card
      * @param {number} cardNo number to make
      * @param {Game.CardSuits} cardSuit card suit
+     * @param {Game.CardSide} side optional param to say which side the card is facing
      */
-    Card = function (cardNo, cardSuit) {
+    Card = function (cardNo, cardSuit, side) {
         this.cardNo = cardNo;
         this.cardSuit = cardSuit;
+        this.cardSide = side === undefined ? game.CardSide.Front : side;
+    };
+
+    game.CardSide = {
+        Front: 0,
+        Back: 1
     };
 
     game.CardSuits = {

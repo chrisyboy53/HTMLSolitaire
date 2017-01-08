@@ -21,7 +21,7 @@ Utilities.Collections = Utilities.Collections || {};
     function init() {
         
         if (!game.Card) {
-            throw 'Deck requires Card namespace';
+            throw 'Deck requires Card';
         }
 
         if (!collections.LinkedList) {
@@ -41,7 +41,6 @@ Utilities.Collections = Utilities.Collections || {};
     function buildDeck() {
         deckModule.stacks = new Array();
         var packOfCards = game.CardManager.getCardPack();
-
         packOfCards = game.CardManager.shuffleCards(packOfCards);
 
         var firstCard = 0,
@@ -52,8 +51,13 @@ Utilities.Collections = Utilities.Collections || {};
             deckModule.stacks.push(new collections.LinkedList());
             
             // Start building stack from pack of cards
-            for (var cardIndex = 0, cLen = i + 1; cardIndex < cLen; cardIndex++) {
+            for (var cardIndex = 0, indexAdd = 1, cLen = i + indexAdd; cardIndex < cLen; cardIndex++) {
                 var card = packOfCards.splice(firstCard, numOfCardsToTake);
+
+                if (cardIndex !== cLen) {
+                    card.cardSide = game.CardSide.Back;
+                }
+
                 deckModule.stacks[i].push(card);
             }
         }
