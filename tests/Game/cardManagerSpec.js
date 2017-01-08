@@ -50,6 +50,33 @@ describe('cardManager', function() {
                 expect(numOfSameIndex).not.toBeGreaterThan(volatilityMargin);
             });
 
+            function _find (arr, callback) {
+                var foundItems = [];
+                for (var i = 0, len = arr.length; i < len; i++) {
+                    if (callback(arr[i])) {
+                        foundItems.push( arr[i] );
+                    }
+                }
+                return foundItems;
+            }
+
+            it('should not have duplicates', function() {
+                var foundDuplicate = false;
+
+                for (var i = 0, len = shuffledPack.length; i < len; i++) {
+                    var results = _find(shuffledPack, function(obj) {
+                        return shuffledPack[i] === obj;
+                    } );
+                    if (results.length > 1) {
+                        foundDuplicate = true;
+                        break;
+                    }
+
+                }
+
+                expect(foundDuplicate).toBe(false);
+            });
+
         });
             
     });
