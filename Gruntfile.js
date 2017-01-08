@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 
         watch: {
             files: ['<%= eslint.target %>'],
-            tasks: ['eslint', 'jasmine']
+            tasks: ['eslint', 'jasmine:full']
         }
 
     });

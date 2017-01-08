@@ -19,11 +19,17 @@ Utilities.Collections = Utilities.Collections || {};
      * Intantiates the deck
      */
     function init() {
+        
         if (!game.Card) {
             throw 'Deck requires Card namespace';
         }
+
         if (!collections.LinkedList) {
             throw 'Deck requires LinkedList';
+        }
+
+        if (!game.CardManager) {
+            throw 'Deck requires CardManager';
         }
 
         buildDeck();
@@ -34,12 +40,23 @@ Utilities.Collections = Utilities.Collections || {};
      */
     function buildDeck() {
         deckModule.stacks = new Array();
-        var number2 = 2;
+        var packOfCards = game.CardManager.getCardPack();
+
+        packOfCards = game.CardManager.shuffleCards(packOfCards);
+
+        var firstCard = 0,
+            numOfCardsToTake = 1;
+
+        // Build each stack
         for(var i = 0, len = deckModule.stack; i < len; i++) {
             deckModule.stacks.push(new collections.LinkedList());
-            deckModule.stacks[i].push(new game.Card(number2, game.CardSuits.Hearts));
+            
+            // Start building stack from pack of cards
+            for (var cardIndex = 0, cLen = i + 1; cardIndex < cLen; cardIndex++) {
+                var card = packOfCards.splice(firstCard, numOfCardsToTake);
+                deckModule.stacks[i].push(card);
+            }
         }
-
     }
 
     deckModule.init = init;
