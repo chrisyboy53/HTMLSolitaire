@@ -71,7 +71,9 @@ describe('cardManager', function() {
                         foundDuplicate = true;
                         break;
                     }
-
+                    
+                    // Need to have at least one card
+                    expect(results.length).toBe(1);
                 }
 
                 expect(foundDuplicate).toBe(false);
