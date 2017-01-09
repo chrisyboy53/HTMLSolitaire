@@ -17,6 +17,8 @@ Utilities.Collections = Utilities.Collections || {};
 
     deckModule.pots = [deckModule.numberOfPots];
 
+    deckModule.pack = null;
+
     /**
      * Intantiates the deck
      */
@@ -68,6 +70,8 @@ Utilities.Collections = Utilities.Collections || {};
         for (var i = 0, len = deckModule.numberOfPots; i < len; i++) {
             deckModule.pots[i] = new collections.LinkedList();
         }
+
+        deckModule.pack = packOfCards;
     }
 
     deckModule.init = init;
