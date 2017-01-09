@@ -73,6 +73,7 @@ Utilities.Collections = Utilities.Collections || {};
             deckModule.pots[i] = new collections.LinkedList();
         }
 
+        // BUG: Seems to be undefined card getting into the pack
         deckModule.pack = packOfCards;
 
         deckModule.holdingPlayStack = new collections.LinkedList();
