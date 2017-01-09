@@ -15,6 +15,8 @@ Utilities.Collections = Utilities.Collections || {};
 
     deckModule.stacks = [deckModule.stack];
 
+    deckModule.holdingPlayStack = null;
+
     deckModule.pots = [deckModule.numberOfPots];
 
     deckModule.pack = null;
@@ -72,6 +74,8 @@ Utilities.Collections = Utilities.Collections || {};
         }
 
         deckModule.pack = packOfCards;
+
+        deckModule.holdingPlayStack = new collections.LinkedList();
     }
 
     deckModule.init = init;
