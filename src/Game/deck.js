@@ -11,9 +11,11 @@ Utilities.Collections = Utilities.Collections || {};
 
     deckModule.stack = 7;
 
-    deckModule.pots = 4;
+    deckModule.numberOfPots = 4;
 
     deckModule.stacks = [deckModule.stack];
+
+    deckModule.pots = [deckModule.numberOfPots];
 
     /**
      * Intantiates the deck
@@ -48,7 +50,7 @@ Utilities.Collections = Utilities.Collections || {};
 
         // Build each stack
         for(var i = 0, len = deckModule.stack; i < len; i++) {
-            deckModule.stacks.push(new collections.LinkedList());
+            deckModule.stacks[i] = new collections.LinkedList();
             
             // Start building stack from pack of cards
             for (var cardIndex = 0, indexAdd = 1, cLen = i + indexAdd; cardIndex < cLen; cardIndex++) {
@@ -60,6 +62,11 @@ Utilities.Collections = Utilities.Collections || {};
 
                 deckModule.stacks[i].push(card);
             }
+        }
+        
+        // Build the pots
+        for (var i = 0, len = deckModule.numberOfPots; i < len; i++) {
+            deckModule.pots[i] = new collections.LinkedList();
         }
     }
 
