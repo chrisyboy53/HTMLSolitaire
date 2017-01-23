@@ -5,24 +5,65 @@ var Game = Game ||  {};
 var Utilities = Utilities || {};
 Utilities.Collections = Utilities.Collections || {};
 
+/**
+ * @module Deck
+ * @requires Collections
+ */
 (function (game, collections) {
 
     var deckModule = {};
 
+    /** 
+     * Number of stacks configured
+     * @readonly
+     * @memberof module:Deck
+     * @name stack
+     * @type {number}
+     */
     deckModule.stack = 7;
 
+    /** 
+     * Number of pots configured
+     * @readonly
+     * @memberof module:Deck
+     * @name numberOfPots
+     * @type {number}
+     */
     deckModule.numberOfPots = 4;
 
+    /**
+     * Holds a list of stacked cards
+     * @readonly
+     * @memberof module:Deck
+     * @name stacks
+     * @type {Array<Utilities.module:Collections.LinkedList<module:Game.Card>>}
+     */
     deckModule.stacks = [deckModule.stack];
 
     deckModule.holdingPlayStack = null;
 
+    /**
+     * Holds a list of pot cards
+     * @readonly
+     * @memberof module:Deck
+     * @name pots
+     * @type {Array<Utilities.module:Collections.LinkedList<module:Game.Card>>}
+     */
     deckModule.pots = [deckModule.numberOfPots];
 
+    /**
+     * Holds a list of cards
+     * @readonly
+     * @memberof module:Deck
+     * @name pack
+     * @type {Array<module:Game.Card>}
+     */
     deckModule.pack = null;
 
     /**
      * Intantiates the deck
+     * @memberof module:Deck
+     * @returns {undefined}
      */
     function init() {
         
@@ -43,6 +84,8 @@ Utilities.Collections = Utilities.Collections || {};
 
     /**
      * Helps build the stacks and pots
+     * @memberof module:Deck
+     * @returns {undefined}
      */
     function buildDeck() {
         deckModule.stacks = new Array();
