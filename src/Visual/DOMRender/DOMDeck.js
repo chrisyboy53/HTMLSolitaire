@@ -8,7 +8,7 @@ Visual.DOMRender = Visual.DOMRender || {};
 
     var deckContainer = null;
 
-    var bottomStack = document.createElement('ul');
+    var _bottomStack = null;
 
     /**
      * Initialises the DOM Deck
@@ -22,6 +22,8 @@ Visual.DOMRender = Visual.DOMRender || {};
         if (!Game.Deck) {
             throw 'Missing Game.Deck object';
         }
+
+        _buildDeck();
     }
 
     /**
@@ -29,10 +31,9 @@ Visual.DOMRender = Visual.DOMRender || {};
      * @returns {undefined}
      */
     function _buildDeck() {
-
         deckContainer = document.createElement('div');
 
-        _buildBottomStacks();
+        _bottomStack = _buildBottomStacks();
     }
 
     /**
@@ -41,7 +42,19 @@ Visual.DOMRender = Visual.DOMRender || {};
      * @returns {HTMLLIElement} returns a new card DOM Object
      */
     function _createCard(cardItem) {
-        return null;
+        var cardHeadNamePrefix = 'card-img',
+            cardImageExtension = '.svg';
+
+        var cardFile = cardHeadNamePrefix + cardItem.cardSuit + '-' + cardItem.cardNo + cardImageExtension;
+
+        var cardDom = document.createElement('li');
+
+        var cardImg = document.createElement('img');
+        cardImg.src = cardFile;
+
+        cardDom.appendChild(cardImg);
+
+        return cardDom;
     }
 
     /**
@@ -51,9 +64,13 @@ Visual.DOMRender = Visual.DOMRender || {};
      */
     function _createStack(stack) {
         var stackDom = document.createElement('li');
+        var stackList = document.createElement('ul');
 
-        for (var ii = 0, iLen = stack.length; ii < iLen; ii++) {
-
+        var stackEnumerator = stack.getEnumerator();
+        
+        while(stackEnumerator.moveNext())
+        {
+            stackList.appendChild( _createCard( stack.currentItem ) );
         }
 
         return stackDom;
@@ -69,16 +86,18 @@ Visual.DOMRender = Visual.DOMRender || {};
             var bottomStacks = document.createElement('ul');
 
             for (var i = 0, len = Game.Deck.stacks.length; i < len; i++) {
-                // var 
-                // bottomStacks.appendChild(
-
-                // )
+                bottomStacks.appendChild(
+                    _createStack(Game.Deck.stacks[i])
+                );
             }
 
             return bottomStacks;
         }
         return null;
     }
+
+    deckDOM.bottomStack = _bottomStack;
+    deckDOM.init = _init;
 
     domRender.DOMDeck = deckDOM;
 
