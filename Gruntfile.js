@@ -4,11 +4,20 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-coveralls');
+    grunt.loadNpmTasks('grunt-jsdoc')
     
     grunt.initConfig({
         env: {
             coverage: {
                 APP_DIR_FOR_CODE_COVERAGE: 'test/coverage/instrument/src'
+            }
+        },
+        jsdoc: {
+            dist: {
+                src: ['src/**/*.js'],
+                options: {
+                    destination: 'doc'
+                }
             }
         },
         coveralls: {
@@ -83,7 +92,7 @@ module.exports = function(grunt) {
 
         watch: {
             files: ['<%= eslint.target %>'],
-            tasks: ['eslint', 'jasmine:full']
+            tasks: ['eslint', 'jasmine:full', 'jsdoc:dist']
         }
 
     });
@@ -91,7 +100,8 @@ module.exports = function(grunt) {
     grunt.registerTask('cover', ['jasmine:cover']);
     grunt.registerTask('coverallsTask', ['jasmine:coveralls', 'coveralls']);
     grunt.registerTask('test', 'jasmine:full');
-    grunt.registerTask('build', ['eslint']);
+    grunt.registerTask('doc', 'jsdoc:dist');
+    grunt.registerTask('build', ['eslint', 'jsdoc:dist']);
     grunt.registerTask('default', 'watch');
 
 }

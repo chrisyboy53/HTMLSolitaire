@@ -1,13 +1,12 @@
+var Game = Game ||  {};
+
 /**
- * Card Manager holds the cards
+ * Card Manager holds the cards<br/><br/>
  * 
  * This is where we can retrieve packs of cards.
  * Helps shuffles cards.
- * 
+ * @module CardManager
  */
-
-var Game = Game ||  {};
-
 (function(game){
 
     var cardManager = {};
@@ -18,7 +17,8 @@ var Game = Game ||  {};
 
     /**
      * Helps get a pack of cards
-     * @returns {Array<Card>} Returns back a pack of cards. IE 52 cards of course.
+     * @memberof module:CardManager
+     * @returns {Array<Game.Card>} - Returns back a pack of cards. IE 52 cards of course.
      */
     function _getCardPack() {
         var cards = new Array();
@@ -34,8 +34,9 @@ var Game = Game ||  {};
 
     /**
      * This will shuffle an array of cards
-     * @param {Array<Cards>} cards Pack of cards to shuffle
-     * @returns {Array<Card>} Returns shuffled cards
+     * @memberof module:CardManager
+     * @param {Array<Game.Cards>} cards Pack of cards to shuffle
+     * @returns {Array<Game.Card>} Returns shuffled cards
      */
     function _shuffleCards(cards) {
         var newCollection = [],
@@ -61,7 +62,6 @@ var Game = Game ||  {};
     cardManager.getCardPack = _getCardPack;
 
     cardManager.shuffleCards = _shuffleCards;
-
     Game.CardManager = cardManager;
-
+    return cardManager;
 })(Game);

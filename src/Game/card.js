@@ -12,21 +12,55 @@ var Game = Game ||  {};
 
     /**
      * Setups a new card
+     * @class Card
+     * @classdesc Business object to hold card information state
+     * @constructor 
+     * @memberof module:Game
      * @param {number} cardNo number to make
      * @param {Game.CardSuits} cardSuit card suit
-     * @param {Game.CardSide} side optional param to say which side the card is facing
+     * @param {Game.CardSide} [side] Which side the card is facing
      */
     Card = function (cardNo, cardSuit, side) {
+        /**
+         * Card Number
+         * @memberof module:Game.Card
+         * @name cardNo
+         * @type {number}
+         */
         this.cardNo = cardNo;
+        /**
+         * Information on the card suit state
+         * @memberof module:Game.Card
+         * @name cardSuit
+         * @type {Game.CardSuits}
+         */
         this.cardSuit = cardSuit;
+        /**
+         * Information on the card side state
+         * @memberof module:Game.Card
+         * @name cardSide
+         * @type {Game.CardSide}
+         */
         this.cardSide = side === undefined ? game.CardSide.Front : side;
     };
 
+    /**
+     * Selection of Card Side
+     * @name CardSide
+     * @enum {number}
+     * @memberof module:Game
+     */
     game.CardSide = {
         Front: 0,
         Back: 1
     };
-
+    
+    /**
+     * Selection of Card Suits
+     * @name CardSuits
+     * @enum {number}
+     * @memberof module:Game
+     */
     game.CardSuits = {
         Hearts: 0,
         Spades: 1,
