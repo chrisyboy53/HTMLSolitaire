@@ -4,6 +4,11 @@ var Visual = Visual || {};
 
     var visualEngine = {};
 
+    /**
+     * Initialises the visual engine
+     * 
+     * @returns {undefined}
+     */
     function _init() {
 
         if (!visual.Canvas) {
