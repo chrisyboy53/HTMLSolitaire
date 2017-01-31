@@ -68,6 +68,21 @@ var Game = Game ||  {};
         Diamonds: 3
     };
 
+    game.cardSuitsToText = function(suit) {
+        switch(suit) {
+            case game.CardSuits.Hearts:
+                return 'Hearts';
+            case game.CardSuits.Spades:
+                return 'Spades';
+            case game.CardSuits.Clubs:
+                return 'Clubs';
+            case game.CardSuits.Diamonds:
+                return 'Diamonds';
+            default:
+                throw 'Unknown card suit';
+        }
+    };
+
     game.Card = Card;
 
 })(Game || {});

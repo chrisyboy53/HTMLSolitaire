@@ -15,12 +15,16 @@ Visual.DOMRender = Visual.DOMRender || {};
      * @returns {undefined}
      */
     function _init() {
-        if (!Visual.DOMRender.DOMCanvas) {
+        if (!domRender.DOMCanvas) {
             throw 'Missing Visual.DOMRender.DOMCanvas object';
         }
 
         if (!Game.Deck) {
             throw 'Missing Game.Deck object';
+        }
+
+        if (!domRender.DOMCanvas.element) {
+            throw 'Need to initialise the DOMCanvas first';
         }
 
         _buildDeck();
@@ -34,6 +38,10 @@ Visual.DOMRender = Visual.DOMRender || {};
         deckContainer = document.createElement('div');
 
         _bottomStack = _buildBottomStacks();
+
+        deckContainer.appendChild(_bottomStack);
+
+        domRender.DOMCanvas.element.appendChild(deckContainer);
     }
 
     /**
@@ -42,10 +50,43 @@ Visual.DOMRender = Visual.DOMRender || {};
      * @returns {HTMLLIElement} returns a new card DOM Object
      */
     function _createCard(cardItem) {
-        var cardHeadNamePrefix = 'card-img',
-            cardImageExtension = '.svg';
 
-        var cardFile = cardHeadNamePrefix + cardItem.cardSuit + '-' + cardItem.cardNo + cardImageExtension;
+        /**
+         * Gets the text version of the number
+         * Useful to know when its not a number and possibly a Ace, King, Queen, Jack
+         * @param {number} number The card number to turn to text
+         * @returns {string} The text value of the card number
+         */
+        function cardNoToCard(number) {
+            var ace = 1,
+                jack = 11,
+                queen = 12,
+                king = 13,
+                ten = 10;
+
+
+            if (number === ace) {
+                return 'ace';
+            }
+            else if (number > ten) {
+                switch (number) {
+                    case jack:
+                        return 'jack';
+                    case queen:
+                        return 'queen';
+                    case king:
+                        return 'king';
+                }
+            }
+            else {
+                return number.toString();
+            }
+        }
+
+        var cardImageExtension = '.svg',
+            imgDir = 'imgs/';
+
+        var cardFile = imgDir + cardNoToCard( cardItem.cardNo ) + '_of_' + Game.cardSuitsToText(cardItem.cardSuit) + cardImageExtension;
 
         var cardDom = document.createElement('li');
 
@@ -70,8 +111,10 @@ Visual.DOMRender = Visual.DOMRender || {};
         
         while(stackEnumerator.moveNext())
         {
-            stackList.appendChild( _createCard( stack.currentItem ) );
+            stackList.appendChild( _createCard( stackEnumerator.current.item ) );
         }
+
+        stackDom.appendChild(stackList);
 
         return stackDom;
     }
@@ -81,19 +124,15 @@ Visual.DOMRender = Visual.DOMRender || {};
      * @returns {HTMLUListElement} The List containing each stack of cards
      */
     function _buildBottomStacks() {
-        if (!deckContainer) {
+        var bottomStacks = document.createElement('ul');
 
-            var bottomStacks = document.createElement('ul');
-
-            for (var i = 0, len = Game.Deck.stacks.length; i < len; i++) {
-                bottomStacks.appendChild(
-                    _createStack(Game.Deck.stacks[i])
-                );
-            }
-
-            return bottomStacks;
+        for (var i = 0, len = Game.Deck.stacks.length; i < len; i++) {
+            bottomStacks.appendChild(
+                _createStack(Game.Deck.stacks[i])
+            );
         }
-        return null;
+
+        return bottomStacks;
     }
 
     deckDOM.bottomStack = _bottomStack;

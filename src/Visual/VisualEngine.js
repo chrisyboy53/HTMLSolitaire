@@ -18,6 +18,19 @@ var Visual = Visual || {};
         visual.Canvas.init();
     }
 
+    /**
+     * Sets up the Canvas Library to use
+     * @param {Object} canvas Canvas Library to use for Visual
+     * @returns {undefined}
+     */
+    function _setCanvasLib(canvas) {
+        visual.Canvas = canvas;
+    }
+
+    visualEngine.setCanvasLib = _setCanvasLib;
+
     visualEngine.init = _init;
+
+    visual.VisualEngine = visualEngine;
 
 })(Visual);

@@ -10,7 +10,8 @@
         <h1>Solitaire</h1>
     </header>
     <div class="game">
-
+        <!-- canvas required for DOM Rendering Framework -->
+        <div id="canvas"></div>
     </div>
 
     <!-- Load Collections -->
@@ -21,7 +22,11 @@
     <script src="src/Game/game.js"></script>
     <script src="src/Game/deck.js"></script>
     <script src="src/Game/card.js"></script>
-    <script src="src/Game/cardManager.js"></script>  
+    <script src="src/Game/cardManager.js"></script>
+    <!-- Load the Visual Library -->
+    <script src="src/Visual/DOMRender/DOMDeck.js"></script>
+    <script src="src/Visual/DOMRender/DOMCanvas.js"></script>
+    <script src="src/Visual/VisualEngine.js"></script>
     <!-- Entry Point -->
     <script src="main.js"></script>
 

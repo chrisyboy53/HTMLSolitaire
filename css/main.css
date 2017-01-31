@@ -1,3 +1,26 @@
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: green;
+}
+
+ul {
+    list-style: none;
+}
+
+#canvas > div > ul > li {
+    display: inline;
+    float:left;
+    position: relative;
+}
+
+#canvas > div > ul > li > ul > li:first-child {
+    margin-top: 0;
+}
+
+#canvas > div > ul > li > ul > li {
+    margin-top: -130px;
+}
+
+img {
+    width: 120px;
 }

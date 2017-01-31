@@ -104,10 +104,10 @@ Utilities.Collections = Utilities.Collections || {};
                 var card = packOfCards.splice(firstCard, numOfCardsToTake);
 
                 if (cardIndex !== cLen) {
-                    card.cardSide = game.CardSide.Back;
+                    card[0].cardSide = game.CardSide.Back;
                 }
 
-                deckModule.stacks[i].push(card);
+                deckModule.stacks[i].push(card[0]);
             }
         }
         
