@@ -21,8 +21,10 @@ Visual.DOMRender = Visual.DOMRender || {};
             throw 'Need a HTML Element with an id of \'canvas\'';
         }
 
-
         canvas.element = canvasElement;
+
+        domRender.DOMDeck.init();
+        
     }
 
     canvas.init = _init;

@@ -8,8 +8,6 @@ if (Game) {
 
     Visual.VisualEngine.init();
 
-    Visual.DOMRender.DOMDeck.init();
-
 }
 else {
     throw 'Game module not loaded';

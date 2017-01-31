@@ -2,7 +2,7 @@ var Visual = Visual || {};
 
 Visual.DOMRender = Visual.DOMRender || {};
 
-(function(domRender) {
+(function(domRender, game) {
 
     var deckDOM = {};
 
@@ -19,7 +19,7 @@ Visual.DOMRender = Visual.DOMRender || {};
             throw 'Missing Visual.DOMRender.DOMCanvas object';
         }
 
-        if (!Game.Deck) {
+        if (!game.Deck) {
             throw 'Missing Game.Deck object';
         }
 
@@ -86,7 +86,7 @@ Visual.DOMRender = Visual.DOMRender || {};
         var cardImageExtension = '.svg',
             imgDir = 'imgs/';
 
-        var cardFile = imgDir + cardNoToCard( cardItem.cardNo ) + '_of_' + Game.cardSuitsToText(cardItem.cardSuit) + cardImageExtension;
+        var cardFile = imgDir + cardNoToCard( cardItem.cardNo ) + '_of_' + game.cardSuitsToText(cardItem.cardSuit) + cardImageExtension;
 
         var cardDom = document.createElement('li');
 
@@ -126,9 +126,9 @@ Visual.DOMRender = Visual.DOMRender || {};
     function _buildBottomStacks() {
         var bottomStacks = document.createElement('ul');
 
-        for (var i = 0, len = Game.Deck.stacks.length; i < len; i++) {
+        for (var i = 0, len = game.Deck.stacks.length; i < len; i++) {
             bottomStacks.appendChild(
-                _createStack(Game.Deck.stacks[i])
+                _createStack(game.Deck.stacks[i])
             );
         }
 
@@ -140,4 +140,4 @@ Visual.DOMRender = Visual.DOMRender || {};
 
     domRender.DOMDeck = deckDOM;
 
-})(Visual.DOMRender);
+})(Visual.DOMRender, Game);
