@@ -135,8 +135,21 @@ Visual.DOMRender = Visual.DOMRender || {};
         return bottomStacks;
     }
 
+    /**
+     * Redraws the entire deck
+     * @returns {undefined}
+     */
+    function _redraw() {
+        domRender.DOMCanvas.element.removeChild(deckContainer);
+
+        deckContainer = null;
+
+        _buildDeck();
+    }
+
     deckDOM.bottomStack = _bottomStack;
     deckDOM.init = _init;
+    deckDOM.redraw = _redraw;
 
     domRender.DOMDeck = deckDOM;
 

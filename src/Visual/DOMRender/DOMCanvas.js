@@ -27,7 +27,18 @@ Visual.DOMRender = Visual.DOMRender || {};
         
     }
 
+    /**
+     * Redraws the Canvas
+     * 
+     * @returns {undefined}
+     */
+    function _redraw() {
+        domRender.DOMDeck.redraw();
+    }
+
     canvas.init = _init;
+
+    canvas.redraw = _redraw;
 
     domRender.DOMCanvas = canvas;
 
