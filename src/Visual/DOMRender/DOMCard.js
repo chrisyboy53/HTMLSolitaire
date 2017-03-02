@@ -26,18 +26,17 @@ Visual.DOMRender = Visual.DOMRender || {};
                 king = 13,
                 ten = 10;
 
-
             if (number === ace) {
-                return 'ace';
+                return 'Ace';
             }
             else if (number > ten) {
                 switch (number) {
                     case jack:
-                        return 'jack';
+                        return 'Jack';
                     case queen:
-                        return 'queen';
+                        return 'Queen';
                     case king:
-                        return 'king';
+                        return 'King';
                 }
             }
             else {
@@ -45,14 +44,25 @@ Visual.DOMRender = Visual.DOMRender || {};
             }
         }
 
+        /**
+         * Event listener for clicking on the card
+         */
+        function onClick() {
+            alert('You clicked on the ' + cardNoToCard( cardItem.cardNo ) + ' of ' + game.cardSuitsToText(cardItem.cardSuit));
+        }
+
         var cardImageExtension = '.svg',
             imgDir = 'imgs/';
+        
+        var ten = 10;
 
-        var cardFile = imgDir + cardNoToCard( cardItem.cardNo ) + '_of_' + game.cardSuitsToText(cardItem.cardSuit) + cardImageExtension;
+        var cardFile = imgDir + cardNoToCard( cardItem.cardNo ).toLowerCase() + '_of_' + game.cardSuitsToText(cardItem.cardSuit).toLowerCase() + (cardItem.cardNo > ten ? '2' : '' ) + cardImageExtension;
 
         var cardImg = document.createElement('img');
-        cardImg.src = cardFile;
+        cardImg.src = cardItem.cardSide === Game.CardSide.Back ? imgDir + 'red_joker.svg' : cardFile;
 
+        cardImg.addEventListener('click', onClick);
+        
         return cardImg;
     }
 

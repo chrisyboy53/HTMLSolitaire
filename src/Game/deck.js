@@ -101,9 +101,10 @@ Utilities.Collections = Utilities.Collections || {};
             
             // Start building stack from pack of cards
             for (var cardIndex = 0, indexAdd = 1, cLen = i + indexAdd; cardIndex < cLen; cardIndex++) {
-                var card = packOfCards.splice(firstCard, numOfCardsToTake);
+                var card = packOfCards.splice(firstCard, numOfCardsToTake),
+                    one = 1;
 
-                if (cardIndex !== cLen) {
+                if (cardIndex !== cLen - one) {
                     card[0].cardSide = game.CardSide.Back;
                 }
 
@@ -120,6 +121,72 @@ Utilities.Collections = Utilities.Collections || {};
         deckModule.pack = packOfCards;
 
         deckModule.holdingPlayStack = new collections.LinkedList();
+    }
+
+    
+
+    /**
+     * Rule for moving card to dest
+     * @param {Game.Card} source being moved
+     * @param {Game.Card} dest being placed on
+     * @returns {boolean} Truthy on if the move is successful
+     */
+    function _canMoveCard(source, dest) {
+        var canMove = false;
+        // Run through tail of stacks
+        for(var i = 0, len = deckModule.stack; i < len; i++) {
+            var tail = deckModule.stack[i].tail;
+
+            if (tail) {
+                if (tail === dest) {
+                    var differentColor = source.cardColor !== dest.cardColor;
+                    var one = 1, 
+                        cardIsNextToEachOther = dest.cardNo + one === source.cardNo ||
+                                                dest.cardNo - one === source.CardNo;
+                    
+                    if (differentColor && cardIsNextToEachOther) {
+                        canMove = true;
+                    }
+                    break;
+                }
+            }
+            else {
+                var king = 13;
+                if (source.cardNo === king) {
+                    canMove = true;
+                }
+            }
+        }
+
+        if (!canMove) {
+
+            // Check pots
+            for (var i = 0, len = deckModule.numberOfPots; i < len; i++) {
+                var pot = deckModule.pots[i];
+
+                if (pot.tail) {
+                    if (tail === dest) {
+                        var cardIsSameSuit = source.cardSuit === dest.cardSuit;
+                        var one = 1,
+                            cardIsNextOneUp = dest.cardNo + one === source.cardNo;
+
+                        if (cardIsSameSuit && cardIsNextOneUp) {
+                            canMove = true;
+                        }
+                    }
+                }
+                else {
+                    var ace = 1;
+                    if (source.cardNo === ace) {
+                        canMove = true;
+                    }
+                }
+
+            }
+
+        }
+
+        return canMove;
     }
 
     deckModule.init = init;

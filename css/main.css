@@ -3,6 +3,10 @@ body {
     background-color: green;
 }
 
+img {
+    fill:black;
+}
+
 ul {
     list-style: none;
 }

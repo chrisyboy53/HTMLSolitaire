@@ -42,6 +42,11 @@ var Game = Game ||  {};
          * @type {Game.CardSide}
          */
         this.cardSide = side === undefined ? game.CardSide.Front : side;
+
+        this.cardColor = cardSuit === game.CardSuits.Clubs || cardSuit === game.CardSuits.Spades ? 
+                            game.CardColor.Black : 
+                            game.CardColor.Red;
+
     };
 
     /**
@@ -55,6 +60,11 @@ var Game = Game ||  {};
         Back: 1
     };
     
+    game.CardColor = {
+        Red: 0,
+        Black: 1
+    };
+
     /**
      * Selection of Card Suits
      * @name CardSuits
