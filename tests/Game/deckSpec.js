@@ -1,6 +1,6 @@
 describe('deck', function() {
 
-    describe('when I initialise deck', function(){
+    describe('when I initialise deck', function() {
 
         beforeEach(function() {
             if (Game &&
