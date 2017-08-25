@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jamine Tests</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/boot.js"></script>
+</head>
+
+<body>
+    
+    <!-- Load Collections -->
+    <script src="src/Utilities/module.js"></script>
+    <script src="src/Utilities/Collections/module.js"></script>
+    <script src="src/Utilities/Collections/linkedlist.js"></script>
+    <!-- Load Game Code -->
+    <script src="src/Game/game.js"></script>
+    <script src="src/Game/deck.js"></script>
+    <script src="src/Game/card.js"></script>
+    <script src="src/Game/cardManager.js"></script>
+    <!-- Load the Visual Library -->
+    <script src="src/Visual/DOMRender/DOMCard.js"></script>
+    <script src="src/Visual/DOMRender/DOMDeck.js"></script>
+    <script src="src/Visual/DOMRender/DOMCanvas.js"></script>
+    <script src="src/Visual/VisualEngine.js"></script>
+
+    <!-- Tests -->
+    <script src="tests/Collections/linkedlistSpec.js"></script>
+    <script src="tests/Game/cardManagerSpec.js"></script>
+    <script src="tests/Game/cardSpec.js"></script>
+    <script src="tests/Game/deckSpec.js"></script>
+    <script src="tests/Game/gameSpec.js"></script>
+
+</body>
+
+</html>
