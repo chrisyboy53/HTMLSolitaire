@@ -163,7 +163,8 @@ Utilities.Collections = Utilities.Collections || {};
                 var pot = deckModule.pots[i];
 
                 if (pot.tail) {
-                    if (tail === dest) {
+                    var tail = pot.tail;
+                    if (tail.item === dest) {
                         var cardIsSameSuit = source.cardSuit === dest.cardSuit;
                         var one = 1,
                             cardIsNextOneUp = dest.cardNo + one === source.cardNo;

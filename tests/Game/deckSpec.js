@@ -89,6 +89,11 @@ describe('deck', function() {
                     deck.stacks[i].push(new Game.Card(cardNo, Game.CardSuits.Spades, Game.CardSide.Front));
                     cardNo++;
                 }
+
+                for (var i = 0, len = deck.pots.length; i < len; i++) {
+                    deck.pots[i] = new Utilities.Collections.LinkedList();
+                }
+                deck.pots[0].push(new Game.Card(1, Game.CardSuits.Clubs, Game.CardSide.Front));
             }
         }
 
@@ -107,6 +112,44 @@ describe('deck', function() {
                 var canMove = deck.canMoveCard(card, deck.stacks[0].head.item);
                 expect(canMove).toBe(true);
             });
+        });
+
+        describe('when I check to see if I can put 3 of hearts on the first stack', function() {
+            it('should not be ok to place', function() {
+                var card = new Game.Card(3, Game.CardSuits.Hearts, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.stacks[0].head.item);
+                expect(canMove).toBe(false);
+            });
+        });
+
+        describe('when I check to see if I can put 2 of diamonds on the first stack', function() {
+            it('should be ok to place', function() {
+                var card = new Game.Card(2, Game.CardSuits.Diamonds, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.stacks[0].head.item);
+                expect(canMove).toBe(true);
+            });
+        });
+
+        describe('when I have ace of clubs in my pot', function() {
+
+            it('it should be ok to place 2 of clubs on the pot', function() {
+                var card = new Game.Card(2, Game.CardSuits.Clubs, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.pots[0].head.item);
+                expect(canMove).toBe(true);
+            });
+
+            it('it should not be ok to place 2 of diamonds on the pot', function() {
+                var card = new Game.Card(2, Game.CardSuits.Diamonds, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.pots[0].head.item);
+                expect(canMove).toBe(false);
+            });
+
+            it('it should not be ok to place 3 of clubs on the pot', function() {
+                var card = new Game.Card(3, Game.CardSuits.Clubs, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.pots[0].head.item);
+                expect(canMove).toBe(false);
+            });
+
         });
 
     });
