@@ -123,8 +123,6 @@ Utilities.Collections = Utilities.Collections || {};
         deckModule.holdingPlayStack = new collections.LinkedList();
     }
 
-    
-
     /**
      * Rule for moving card to dest
      * @param {Game.Card} source being moved
@@ -135,10 +133,10 @@ Utilities.Collections = Utilities.Collections || {};
         var canMove = false;
         // Run through tail of stacks
         for(var i = 0, len = deckModule.stack; i < len; i++) {
-            var tail = deckModule.stack[i].tail;
+            var tail = deckModule.stacks[i].tail;
 
             if (tail) {
-                if (tail === dest) {
+                if (tail.item === dest) {
                     var differentColor = source.cardColor !== dest.cardColor;
                     var one = 1, 
                         cardIsNextToEachOther = dest.cardNo + one === source.cardNo ||
@@ -165,7 +163,8 @@ Utilities.Collections = Utilities.Collections || {};
                 var pot = deckModule.pots[i];
 
                 if (pot.tail) {
-                    if (tail === dest) {
+                    var tail = pot.tail;
+                    if (tail.item === dest) {
                         var cardIsSameSuit = source.cardSuit === dest.cardSuit;
                         var one = 1,
                             cardIsNextOneUp = dest.cardNo + one === source.cardNo;
@@ -188,6 +187,8 @@ Utilities.Collections = Utilities.Collections || {};
 
         return canMove;
     }
+
+    deckModule.canMoveCard = _canMoveCard;
 
     deckModule.init = init;
 

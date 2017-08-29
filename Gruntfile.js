@@ -4,7 +4,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-coveralls');
-    grunt.loadNpmTasks('grunt-jsdoc')
+    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-http-server')
     
     grunt.initConfig({
         env: {
@@ -93,6 +94,16 @@ module.exports = function(grunt) {
         watch: {
             files: ['<%= eslint.target %>'],
             tasks: ['eslint', 'jasmine:full', 'jsdoc:dist']
+        },
+
+        'http-server': {
+            'dev': {
+                root: '.',
+                port: 8282,
+                showDir: true,
+                ext: 'html',
+                openBrowser: true
+            }
         }
 
     });
@@ -102,6 +113,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', 'jasmine:full');
     grunt.registerTask('doc', 'jsdoc:dist');
     grunt.registerTask('build', ['eslint', 'jsdoc:dist']);
+    grunt.registerTask('serv', ['http-server:dev']);
     grunt.registerTask('default', 'watch');
 
 }
