@@ -69,6 +69,46 @@ describe('deck', function() {
             });
         });
 
-    })
+    });
+
+    describe('when I setup a mocked version of deck', function() {
+
+        deck = null;
+        
+        function _setupMockedStack() {
+            if (Game && 
+                Game.Deck &&
+                Game.Card) {
+
+                deck = Game.Deck;
+                
+                var cardNo = 1;
+
+                for (var i = 0, len = deck.stacks.length; i < len; i++) {
+                    deck.stacks[i] = new Utilities.Collections.LinkedList();
+                    deck.stacks[i].push(new Game.Card(cardNo, Game.CardSuits.Spades, Game.CardSide.Front));
+                    cardNo++;
+                }
+            }
+        }
+
+        beforeEach(function() {
+            _setupMockedStack();
+        });
+
+        it('should have the first card in the stack with an ace of spades', function() {
+            expect(deck.stacks[0].head.item.cardNo).toBe(1);
+            expect(deck.stacks[0].head.item.cardSuit).toBe(Game.CardSuits.Spades);
+        });
+
+        describe('when I check to see if I can put 2 of hearts on the first stack', function() {
+            it('should be ok to place', function() {
+                var card = new Game.Card(2, Game.CardSuits.Hearts, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.stacks[0].head.item);
+                expect(canMove).toBe(true);
+            });
+        });
+
+    });
 
 });
