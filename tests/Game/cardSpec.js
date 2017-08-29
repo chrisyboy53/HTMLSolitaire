@@ -21,4 +21,23 @@ describe('card', function() {
             expect(card.cardSuit).toBe(Game.CardSuits.Hearts);
         });
     });
+
+    describe('when I want to find out card description', function() {
+        it('should have the card of hearts to come out as Hearts', function() {
+            var desc = Game.cardSuitsToText(Game.CardSuits.Hearts);
+            expect(desc).toBe('Hearts');
+        });
+        it('should have the card of spades to come out as Spades', function() {
+            var desc = Game.cardSuitsToText(Game.CardSuits.Spades);
+            expect(desc).toBe('Spades');
+        });
+        it('should have the card of diamonds to come out as Diamonds', function() {
+            var desc = Game.cardSuitsToText(Game.CardSuits.Diamonds);
+            expect(desc).toBe('Diamonds');
+        });
+        it('should have the card of clubs to come out as Clubs', function() {
+            var desc = Game.cardSuitsToText(Game.CardSuits.Clubs);
+            expect(desc).toBe('Clubs');
+        });
+    });
 });
