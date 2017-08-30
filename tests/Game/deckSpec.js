@@ -152,6 +152,39 @@ describe('deck', function() {
 
         });
 
+        describe('when I want to place a card in an empty pot', function() {
+            it('should be ok to place a ace of hearts in', function() {
+                var card = new Game.Card(1, Game.CardSuits.Hearts, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.pots[1].head);
+                expect(canMove).toBe(true);
+            });
+            it('should not be ok to place a 3 of hearts in', function() {
+                var card = new Game.Card(3, Game.CardSuits.Hearts, Game.CardSide.Front);
+                var canMove = deck.canMoveCard(card, deck.pots[1].head);
+                expect(canMove).toBe(false);
+            });
+        });
+        
+        describe('when I remove the first card in the first stack', function() {
+                
+                beforeEach(function() {
+                    deck.stacks[0].tail = undefined;
+                    deck.stacks[0].head = undefined;
+                });
+
+                it('should allow me to place a king on the empty stack', function() {
+                    var card = new Game.Card(13, Game.CardSuits.Clubs, Game.CardSide.Front);
+                    var canMove = deck.canMoveCard(card, deck.stacks[0].head);
+                    expect(canMove).toBe(true);
+                });
+
+                it('should not allow me to place a 8 of hearts on the empty stack', function() {
+                    var card = new Game.Card(8, Game.CardSuits.Hearts, Game.CardSide.Front);
+                    var canMove = deck.canMoveCard(card, deck.stacks[0].head);
+                    expect(canMove).toBe(false);
+                });
+        });
+
     });
 
 });

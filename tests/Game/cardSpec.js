@@ -39,5 +39,12 @@ describe('card', function() {
             var desc = Game.cardSuitsToText(Game.CardSuits.Clubs);
             expect(desc).toBe('Clubs');
         });
+        it('should have a bad card to come out with an exception', function() {
+            function test() {
+                Game.cardSuitsToText(null);
+            }
+
+            expect(test).toThrow('Unknown card suit');
+        });
     });
 });

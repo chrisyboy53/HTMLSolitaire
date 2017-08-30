@@ -16,6 +16,14 @@ describe('Linked List', function() {
         }
     });
 
+    describe('when enumerating through an empty list', function() {
+        it('should return false when I try to move next', function() {
+            var enumerator = linkedList.getEnumerator();
+
+            expect(enumerator.moveNext()).toBe(false);
+        })
+    });
+
     describe('when adding one item to list', function() {
 
         beforeEach(function() {

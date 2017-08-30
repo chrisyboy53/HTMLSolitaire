@@ -1,7 +1,6 @@
 
 describe('cardManager', function() {
     
-    
     describe('when requesting for pack of cards', function() {
         var packOfCards = null;
         
